@@ -1,0 +1,32 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: keycloak-server
+spec:
+  components:
+    - name: keycloak-container
+      type: webservice
+      properties:
+        image: quay.io/keycloak/keycloak:21.0.2
+        ports:
+          - port: 8080
+            expose: true
+        cmd: ["start"]
+      traits:
+      - type: resource
+        properties:
+          requests: 
+            cpu: 0.125
+            memory: "300Mi" 
+          limits: 
+            cpu: 0.25 
+            memory: "500Mi" 
+      - type: scaler
+        properties:
+          replicas: 1
+      - type: napptive-ingress
+        properties:
+          name: keycloak-ui
+          port: 8080
+          path: /
+          rewritePath: /

@@ -1,0 +1,16 @@
+ apiVersion: core.napptive.com/v1alpha1
+ kind: ApplicationMetadata 
+ name: "Keycloak Dashboard"
+ version: 1.0 
+ description: Keycloak Dashboard
+ keywords: 
+   - "Keycloak"
+   - "IDP"
+   - "Identity Management System"
+ license: "Apache License 2.0" 
+ url: "https://quay.io/keycloak"
+ doc: "https://www.keycloak.org/documentation"
+ logo:
+   - src: "https://www.keycloak.org/resources/images/keycloak_logo_200px.svg"
+     type: "image/svg"
+     size: "120x120"
