@@ -9,7 +9,7 @@ Keycloak is an Open Source Identity and Access Management solution for modern Ap
 
 Deploy this application from the CLI:
 ```
-playground apps deploy https://github.com/afro-coder/keycloak-napptive
+playground catalog deploy mediocredevops/keycloak:keycloak
 ```
 
 Or simply download the zip from Github and upload it to the Napptive UI
