@@ -11,7 +11,7 @@ spec:
         ports:
           - port: 8080
             expose: true
-        cmd: ["start"]
+        cmd: ["start-dev"]
       traits:
       - type: resource
         properties:
