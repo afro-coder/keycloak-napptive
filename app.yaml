@@ -9,18 +9,36 @@ spec:
       properties:
         image: quay.io/keycloak/keycloak:21.0.2
         ports:
-          - port: 8080
-            expose: true
-        cmd: ["start-dev"]
+        - port: 8080
+          expose: true
+        cmd: ["/opt/keycloak/bin/kc.sh", "start-dev", "--proxy","edge"] # This is required since the reverse proxy fails on napptive.
+        env:
+          - name: "KEYCLOAK_ADMIN"
+            value: "admin"
+          - name: "KEYCLOAK_ADMIN_PASSWORD" # Use proper secret management here, but couldn't find how to pass this
+            value: 'admin123'
       traits:
       - type: resource
-        properties:
+        properties:  
+          #secret: # This doesn't work don't use it, will check in future.
+          #  - name: "keycloak-user"
+          #    mountToEnv:
+          #      envName: KEYCLOAK_ADMIN
+          #      secretKey: key1
+          #    data:
+          #      key1: YWRtaW4K
+          #  - name: "keycloak-pw"
+          #    mountToEnv:
+          #      envName: KEYCLOAK_ADMIN_PASSWORD
+          #      secretKey: key1
+          #    data:
+          #      key1: YWRtaW4xMjMK
           requests: 
-            cpu: 0.125
+            cpu: 0.800
             memory: "300Mi" 
           limits: 
-            cpu: 0.25 
-            memory: "500Mi" 
+            cpu: 0.900 
+            memory: "1500Mi" 
       - type: scaler
         properties:
           replicas: 1
